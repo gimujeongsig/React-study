@@ -1,0 +1,92 @@
+/*
+선택자 {속성:값}
+div { background-color: black;}
+div {
+    color: white;
+    width: 300px;
+}
+*/
+
+/* CSS내에서 다른 CSS 파일을 가져와 연결하는 방식 */
+@import url("./style2.css"); /* url함수 (function) */
+/* 일치 선택자 */
+span.orange {
+    color: red;
+}
+
+/* 자식 선택자 */
+/* ul의 자식 요소 인 class "green"속성과 값을 */
+ul > .green {
+    color: green;
+}
+
+/* 하위 선택자 */
+ul .red {
+    color: red;
+}
+
+/* 인접 형태 선택자 
+
+.yellow + li {
+    color: yellowgreen;
+}
+*/
+/* 일반 형제 선택자 */
+
+.yellow ~ li {
+    color : yellowgreen;
+}
+
+/* hover */
+.purple:hover {
+    color: purple;
+}
+.purple:active {
+    color: red;
+}
+input:focus {
+    background-color:  aqua;
+}
+
+.car span:first-child {
+    color: orange;
+}
+.car h3:last-child {
+    color: gray;
+}
+.car *:nth-child(2){
+    color: red;
+}
+.car *:not(span){
+    font-size: x-large;
+}
+
+/* before after  */
+.box::before {
+    content: "💖";
+}
+.box::after {
+    content: "뒤!!";
+}
+[disabled] {
+    color: red;
+}
+[type="password"] {
+    color: chartreuse;
+}
+[value="HI"] {
+    color: blue;
+}
+.animal {
+    color: red;
+}
+/* 상속을 받는 대표적인 요소들 */
+/* font관련, line-weight, color, text-align */
+
+/* 우선순위 */ 
+div {color: red !important;} 
+#color_yellow { color: yellow;} 
+.color_green {color: green} 
+div {color:blue} /* 태그 선택자 1점 */
+* {color: brown;} /* 전체 선택자 0점 */
+body {color: violet} /* 상속을 하지 않음 */
