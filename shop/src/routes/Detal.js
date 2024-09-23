@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import {useParams} from 'react-router-dom'
 import styled from 'styled-components';
 import { Nav } from 'react-bootstrap';
+import '../App.css';
 
 // let Box = styled.div`
 //     padding : 20px;
@@ -12,6 +13,29 @@ import { Nav } from 'react-bootstrap';
 //     color : black;
 //     padding : 10px;
 // `;
+function TabContent(props) {
+    let [fade,   setFade] = useState('')
+        useEffect(() => {
+            setTimeout(() => {setFade('end')}, 100)
+        return () => {
+            setFade('')
+        }
+        },[props.탭])
+        return (
+            <div className={'start ' + fade}>
+                {[<div>내용 0</div>,<div>내용 1</div>,<div>내용 2</div>][props.탭]}
+            </div>
+    )
+    // if (props.탭 === 0) {
+    //     return <div>내용 0</div>
+    // }
+    // if (props.탭 === 1) {
+    //     return <div>내용 1</div>
+    // }
+    // if (props.탭 === 2) {
+    //     return <div>내용 2</div>
+    // }
+}
 
 function Detail (props) {
     // useEffect(() => {
@@ -23,6 +47,16 @@ function Detail (props) {
         return x.id == id
     });
 
+    let [탭, 탭변경] = useState(1)
+    let [fade2,   setFade2] = useState('')
+
+        useEffect(() => {
+            setTimeout(() => {setFade2('end')}, 100)
+        return () => {
+            setFade2('')
+        }
+        },[])
+
     // let [alert, setAlert] = useState(true)
     // useEffect(() => {
     // let timer = setTimeout(()=> {setAlert(false)}, 2000)
@@ -32,7 +66,7 @@ function Detail (props) {
     // }, [] )
     
     return (
-        <div className="container">
+        <div className={'container start ' + fade2}>
             <div className="row">
                 <div className="col-md-6">
                     <img src="/shoe1.png" width="100%"></img>
@@ -52,18 +86,16 @@ function Detail (props) {
                 </Box> */}
                 <Nav variant="tabs" defaultActiveKey="link0">
                     <Nav.Item>
-                        <Nav.Link eventKey="link0">버튼 0</Nav.Link>
+                        <Nav.Link onClick={()=>{탭변경(0)}} eventKey="link0">버튼 0</Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                        <Nav.Link eventKey="link1">버튼 1</Nav.Link>
+                        <Nav.Link onClick={()=>{탭변경(1)}} eventKey="link1">버튼 1</Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                        <Nav.Link eventKey="link2">버튼 2</Nav.Link>
+                        <Nav.Link onClick={()=>{탭변경(2)}} eventKey="link2">버튼 2</Nav.Link>
                     </Nav.Item>
                 </Nav>
-                <div>내용 0</div>
-                <div>내용 1</div>
-                <div>내용 2</div>
+                <TabContent 탭={탭}/>
             </div>
         </div>
     )
